@@ -1,6 +1,5 @@
 from flask import Flask, render_template
 
-import app.views as views
 from config import *
 
 app = Flask(__name__, template_folder="app/templates", static_folder="app/static")
