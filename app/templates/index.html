@@ -1,0 +1,51 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+    <title>WheatDetector</title>
+  </head>
+  <body>
+    <div class="header">
+      <h1 class="header__text">
+        WheatDetector <br />
+        помошник #1 в подсчете урожайности
+      </h1>
+    </div>
+    <div class="container">
+      <h1 class="dron__text">Загрузка файлов с дрона</h1>
+      <div id="drop-area">
+        <form class="dron-form">
+          <p>
+            Загрузите фотографии полей, не изменяя их названий, а также
+            текстовые файлы с данными о полях. После загрузки данные будут
+            обработаны на сервере
+          </p>
+          <input
+            type="file"
+            id="fileElem"
+            multiple
+            accept="image/*"
+            onchange="handleFiles(this.files)"
+          />
+          <label class="button" for="fileElem">SELECT FILES</label>
+          <button class="button" id="submitButton"></button>
+          <label class="button" for="submitButton">SEND FILES</label>
+        </form>
+        <progress id="progress-bar" max="100" value="0"></progress>
+        <div id="gallery"></div>
+      </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='index.js') }}"></script>
+  </body>
+</html>
