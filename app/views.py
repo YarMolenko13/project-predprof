@@ -4,7 +4,7 @@ from flask import render_template, request, flash, redirect, url_for, send_from_
 from werkzeug.utils import secure_filename
 
 import app.service as service
-import config
+from config import *
 from yolo.detect import run
 
 
