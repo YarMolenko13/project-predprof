@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask, render_template, request, flash, url_for, jsonify
+from flask import Flask, render_template, request, flash, url_for, send_from_directory
 from werkzeug.utils import secure_filename, redirect
 
 import config
@@ -33,9 +33,13 @@ def upload():
 
     return "error", 500
 
+def results():
+    return send_from_directory(os.getcwd() + config.UPLOAD_FOLDER, "30353944.jpg")
+
 
 app.add_url_rule('/', view_func=home)
 app.add_url_rule('/api/upload', view_func=upload, methods=["post"])
+app.add_url_rule('/results', view_func=results)
 
 if __name__ == "__main__":
     app.run(port=3000)
