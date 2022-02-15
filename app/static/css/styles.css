@@ -18,8 +18,8 @@ body {
 }
 
 .content {
-  background-image: -webkit-gradient(linear, left top, right top, from(#eee), to(#fff));
-  background-image: linear-gradient(to right, #eee, #fff);
+  background-image: -webkit-gradient(linear, left top, right top, from(#fff), to(#eee));
+  background-image: linear-gradient(to right, #fff, #eee);
   height: 100%;
 }
 
