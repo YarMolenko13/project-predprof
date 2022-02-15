@@ -1,3 +1,5 @@
+const RESULTS_URL = "/results"
+
 const textPlaceholderImage = "./images/txt.png";
 let dropArea = document.getElementById("drop-area");
 
@@ -100,12 +102,9 @@ function uploadFile(file, i) {
     });
 }
 
-function onStartProcessing() {
-  let url = "/api/results";
-  fetch(url, {
-    method: "GET",
-  })
-    .catch(() => {
-      // Ошибка. Информируем пользователя
-    });
-}
+function submitForm(e) {
+  e.preventDefault()
+  window.location.href = RESULTS_URL
+} 
+
+document.querySelector('#submitButton').addEventListener('click', submitForm)
