@@ -24,7 +24,7 @@
     <div class="container">
       <h1 class="dron__text">Загрузка файлов с дрона</h1>
       <div id="drop-area">
-        <form class="dron-form">
+        <form class="dron-form" onsubmit="onStartProcessing()">
           <p>
             Загрузите фотографии полей, не изменяя их названий, а также
             текстовые файлы с данными о полях. После загрузки данные будут
@@ -38,7 +38,7 @@
             onchange="handleFiles(this.files)"
           />
           <label class="button" for="fileElem">SELECT FILES</label>
-          <button class="button" id="submitButton"></button>
+          <input class="button" type="submit" id="submitButton"></button>
           <label class="button" for="submitButton">SEND FILES</label>
         </form>
         <progress id="progress-bar" max="100" value="0"></progress>

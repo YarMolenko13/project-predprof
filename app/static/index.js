@@ -100,5 +100,12 @@ function uploadFile(file, i) {
     });
 }
 
-// TODO: обраточик на кнопку SEND FILES: Отправка get запроса на "api/results"
-// TODO: пока картинки грузятся на сервер, сделать кнопку SEND FILES некликабельной
+function onStartProcessing() {
+  let url = "/api/results";
+  fetch(url, {
+    method: "GET",
+  })
+    .catch(() => {
+      // Ошибка. Информируем пользователя
+    });
+}
