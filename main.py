@@ -14,3 +14,7 @@ app.add_url_rule('/download_file/<string:name>', view_func=views.download_file)
 
 if __name__ == "__main__":
     app.run(port=3000)
+
+# TODO: merge funcs from main_no_yolo to main
+
+# TODO: удаление папки при выходе с results
