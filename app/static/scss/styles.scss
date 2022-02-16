@@ -52,10 +52,14 @@ body {
 #drop-area {
   border: 2px dashed #ccc;
   border-radius: 2rem;
-  width: 80rem;
+  width: auto;
+  max-width: 120rem;
   font-family: sans-serif;
   margin: 3rem auto;
   padding: 2rem;
+  -webkit-box-shadow: 6px -2px 11px 9px rgba(34, 60, 80, 0.12);
+  -moz-box-shadow: 6px -2px 11px 9px rgba(34, 60, 80, 0.12);
+  box-shadow: 6px -2px 11px 9px rgba(34, 60, 80, 0.12);
 }
 #drop-area.highlight {
   border-color: purple;
@@ -110,4 +114,95 @@ p {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.results-cards__header {
+  text-align: center;
+  font-weight: 400;
+  font-size: 5rem;
+  margin-bottom: 2rem;
+}
+
+.average-square {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 2rem;
+  grid-auto-rows: minmax(10rem, auto);
+  margin: auto;
+  padding: 5rem;
+  max-width: 120rem;
+}
+
+.card--main {
+  grid-column: 1;
+}
+
+.card--graph {
+  grid-column: 2 / 4;
+}
+
+.card {
+  border: 1px solid rgba(34, 60, 80, 0.1);
+  border-radius: 1rem;
+  -webkit-box-shadow: 3px 0px 11px 6px rgba(34, 60, 80, 0.07);
+  -moz-box-shadow: 3px 0px 11px 6px rgba(34, 60, 80, 0.07);
+  box-shadow: 3px 0px 11px 6px rgba(34, 60, 80, 0.07);
+}
+
+.card__title {
+  text-align: center;
+  padding: 0.5rem;
+  font-weight: 400;
+}
+
+svg.radial-progress {
+  height: auto;
+  margin: 3rem;
+  padding: 1em;
+  transform: rotate(-90deg);
+  width: 100%;
+}
+
+svg.radial-progress circle {
+  fill: rgba(0, 0, 0, 0);
+  stroke: rgb(138, 240, 240);
+  stroke-dashoffset: 219.91148575129;
+  stroke-width: 10;
+}
+
+svg.radial-progress circle.incomplete {
+  opacity: 0.25;
+}
+
+svg.radial-progress circle.complete {
+  stroke-dasharray: 219.91148575129;
+}
+
+svg.radial-progress text {
+  fill: rgb(5, 8, 34);
+  text-anchor: middle;
+  font-weight: 500;
+}
+
+.card__content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.container {
+  margin: 3rem;
+}
+
+.square-img {
+  height: auto;
+  margin: 1rem 2rem;
+  padding: 1em;
+  width: 100%;
 }

@@ -1,10 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-   <meta charset="UTF-8">
-   <title>Results</title>
-</head>
-<body>
-  <h1>{{ user_id }}</h1>
-</body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Jost:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet" />
+
+        <link rel="stylesheet" href="../static/css/styles.css" />
+        <title>WheatDetector</title>
+    </head>
+    <body>
+        <div class="content">
+            <div class="header">
+                <h1 class="header__text">WheatDetector</h1>
+            </div>
+            <div class="result-cards">
+                <h1 class="results-cards__header">Results</h1>
+                <div class="wrapper">
+                    <div class="card card--main">
+                        <h1 class="card__title card__title--main">Average Density</h1>
+                        <div class="card__content">
+                            <svg class="radial-progress" data-percentage="5" viewBox="0 0 80 80">
+                                <circle class="incomplete" cx="40" cy="40" r="35"></circle>
+                                <circle class="complete" cx="40" cy="40" r="35" style="stroke-dashoffset: 39.58406743523136"></circle>
+                                <text class="percentage" x="50%" y="57%" transform="matrix(0, 1, -1, 0, 80, 0)">5%</text>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="card card--graph">
+                        <h1 class="card__title card__title--graph">Average Density</h1>
+                        <div class="card__content">
+                            <canvas id="densityChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="card card--main">
+                      <h1 class="card__title card__title--main">Average Square</h1>
+                      <div class="card__content">
+                          <img class="square-img" src="../static/images/field.svg"/>
+                          <h5 class="average-square">1321092 m^2</h5>
+                      </div>
+                  </div>
+                    <div class="card card--graph">
+                      <h1 class="card__title card__title--graph">Squares</h1>
+                      <div class="card__content">
+                          <canvas id="squareChart"></canvas>
+                      </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+        <script
+            src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT"
+            crossorigin="anonymous"
+        ></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="../static/results.js"></script>
+    </body>
 </html>
