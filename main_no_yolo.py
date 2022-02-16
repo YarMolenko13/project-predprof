@@ -2,7 +2,7 @@ import os
 import shutil
 import uuid
 
-from flask import Flask, render_template, request, flash, session
+from flask import Flask, render_template, request, flash, session, send_from_directory
 from werkzeug.utils import secure_filename
 
 from app import service
@@ -27,8 +27,9 @@ def home(some_text=None):
 
     return render_template("index.html", some_text=some_text)
 
-
+# TODO: try catch
 def upload():
+
     if "file" not in request.files:
         return flash("No selected file")
 
@@ -56,25 +57,33 @@ def upload():
 def results():
     if SESSION_USER in session:
         print("--" * 10, session[SESSION_USER])
-        return render_template("results.html", user_id=session[SESSION_USER])
+        # return render_template("results.html", user_id=session[SESSION_USER])\]\
 
-    # return send_from_directory(os.getcwd() + config.UPLOAD_FOLDER, "30353944.jpg")
+        user_id = session[SESSION_USER]
+
+        dirname = f"{os.getcwd()}{UPLOAD_FOLDER}/{str(user_id)}/input"
+        path = dirname.replace("\\", "/")
+
+        return send_from_directory(path, os.listdir(path)[0])
 
 
 def delete_folder():
     user_id = session[SESSION_USER]
+    try:
+        dirname = f"{os.getcwd()}{UPLOAD_FOLDER}/{str(user_id)}"
+        dirname = dirname.replace("\\", "/")
 
-    dirname = f"{os.getcwd()}{UPLOAD_FOLDER}/{str(user_id)}"
-    dirname = dirname.replace("\\", "/")
 
-    shutil.rmtree(dirname)
+        shutil.rmtree(dirname)
+    except Exception:
+        print("delete error")
 
-    return "<h1>deleted</h1>"
+    return "good", 200
 
 
 app.add_url_rule('/', view_func=home)
 app.add_url_rule('/api/upload', view_func=upload, methods=["post"])
-app.add_url_rule('/api/delete_folder', view_func=delete_folder, methods=["get"])
+app.add_url_rule('/api/delete_folder', view_func=delete_folder, methods=["post"])
 app.add_url_rule('/results', view_func=results)
 
 if __name__ == "__main__":

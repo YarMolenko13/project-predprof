@@ -105,15 +105,16 @@ function uploadFile(file, i) {
 
 function submitForm(e) {
     e.preventDefault();
+    window.removeEventListener("beforeunload", fetchDeleteFolder)
     window.location.href = RESULTS_URL;
 }
 
 document.querySelector("#submitButton").addEventListener("click", submitForm);
 
-document.addEventListener("beforeunload", () => {
+function fetchDeleteFolder() {
     fetch(DELETE_FOLDER_URL, {
         method: "POST",
-    }).catch(() => {
-        // Ошибка. Информируем пользователя
-    });
-});
+    })
+}
+
+window.addEventListener("beforeunload", fetchDeleteFolder);
