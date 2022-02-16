@@ -1,9 +1,13 @@
+"""
+Deprecated
+"""
+
 import os
 import shutil
 import uuid
 
 from flask import Flask, render_template, request, flash, session, send_from_directory
-from werkzeug.utils import secure_filename
+from werkzeug.utils import secure_filename, redirect
 
 from app import service
 from config import *
@@ -29,7 +33,6 @@ def home(some_text=None):
 
 # TODO: try catch
 def upload():
-
     if "file" not in request.files:
         return flash("No selected file")
 
@@ -64,7 +67,9 @@ def results():
         dirname = f"{os.getcwd()}{UPLOAD_FOLDER}/{str(user_id)}/input"
         path = dirname.replace("\\", "/")
 
-        return send_from_directory(path, os.listdir(path)[0])
+        # return send_from_directory(path, os.listdir(path)[0])
+        return render_template("results.html")
+    return redirect("/")
 
 
 def delete_folder():

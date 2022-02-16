@@ -9,12 +9,25 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1000 * 1000
 
 app.add_url_rule('/', view_func=views.home)
+app.add_url_rule('/results', view_func=views.results)
+
+# api
 app.add_url_rule('/api/upload', view_func=views.upload, methods=["POST"])
-app.add_url_rule('/download_file/<string:name>', view_func=views.download_file)
+app.add_url_rule('/api/delete_folder', view_func=views.delete_folder, methods=["POST"])
 
 if __name__ == "__main__":
-    app.run(port=3000)
+    app.run(port=3000, debug=False)
+
+# !!!TODO: on leave results delete only input \ reset button
 
 # TODO: merge funcs from main_no_yolo to main
 
+# FIXME: delete error
+
 # TODO: удаление папки при выходе с results
+
+# TODO: логирование
+
+# TODO: рефакторинг кода
+
+# TODO: errors catching

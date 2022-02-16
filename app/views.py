@@ -1,7 +1,7 @@
 import os
 import uuid
 
-from flask import render_template, request, flash, redirect, send_from_directory, session
+from flask import render_template, request, flash, redirect, session
 from werkzeug.utils import secure_filename
 
 import app.service as service
@@ -16,22 +16,25 @@ def upload_callback():
     return redirect('asdfsa')
 
 
-def home(some_text=None):
-    user_id = uuid.uuid1()
-    session[SESSION_USER] = user_id
+"""
+При заходе на главную страницу, для пользователя создается id и схораняется в session.
+Если id уже существует, очищаем папку юзера input (т.к., скорее всего он перешел из results)
+"""
+def home():
+    if SESSION_USER not in session:
+        user_id = uuid.uuid1()
+        session[SESSION_USER] = str(user_id)
+    else:
+        print("deeelete")
+        service.clear_user_input_folder(session[SESSION_USER])
 
-    # TODO: change path
-    print("make dirs")
-
-    root_path = "\\".join(os.getcwd().split("\\"))
-    root_path = root_path.replace("\\", "/")
-
-    os.makedirs(f"{root_path}{UPLOAD_FOLDER}/{str(user_id)}/input")
-    os.makedirs(f"{root_path}{UPLOAD_FOLDER}/{str(user_id)}/output")
-
-    return render_template("index.html", some_text=some_text)
+    return render_template("index.html")
 
 
+"""
+Если в запросе имеется файлы с допустимыми расширениями, создается папка юзера (индивидуальная для каждого пользователя)
+с вложенными каталогами input & output
+"""
 # TODO: try catch
 def upload():
     if "file" not in request.files:
@@ -44,14 +47,15 @@ def upload():
         return "bad request", 400
 
     if file and service.allowed_file(file.filename):
+        # TODO: move functional to service
         user_id = session[SESSION_USER]
-        # TODO : fix filename
+
+        service.create_user_folder_and_get_path(user_id)
+        input_path = service.get_user_path(user_id) + INPUT_FOLDER
+
         filename = secure_filename(file.filename)
 
-        root_path = "\\".join(os.getcwd().split("\\")[0:-1])
-        dirname = f'{root_path}{UPLOAD_FOLDER}/{str(user_id)}/input'
-
-        path = os.path.join(dirname, filename)
+        path = os.path.join(input_path, filename)
         path = path.replace("\\", "/")
 
         file.save(path)
@@ -59,5 +63,29 @@ def upload():
     return "good", 200
 
 
-def download_file(name):
-    return send_from_directory(os.getcwd() + UPLOAD_FOLDER, name)
+"""
+Если session содержит user_id, то рендериться страница с результатом, иначе редирект на главную 
+"""
+def results():
+    if SESSION_USER in session:
+        # user_id = session[SESSION_USER]
+
+        return render_template("results.html")
+    return redirect("/")
+
+
+"""
+Очищение папки input пользователя
+"""
+def delete_folder():
+    user_id = session[SESSION_USER]
+
+    try:
+        service.clear_user_input_folder(user_id)
+    except Exception as e:
+        print(e)
+        print("delete error")
+
+        return "deleting user input folder error", 500
+
+    return "good", 200

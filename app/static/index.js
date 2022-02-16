@@ -112,6 +112,7 @@ function submitForm(e) {
 document.querySelector("#submitButton").addEventListener("click", submitForm);
 
 function fetchDeleteFolder() {
+    alert("before")
     fetch(DELETE_FOLDER_URL, {
         method: "POST",
     })
