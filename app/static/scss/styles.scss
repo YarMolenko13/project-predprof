@@ -18,7 +18,8 @@ body {
 
 .content {
   background-image: linear-gradient(to right, #fff, #eee);
-  height: 100%;
+  min-height: 100%;
+  height: auto;
   -webkit-box-shadow: 8px -9px 22px -1px rgba(34, 60, 80, 0.19);
   -moz-box-shadow: 8px -9px 22px -1px rgba(34, 60, 80, 0.19);
   box-shadow: 8px -9px 22px -1px rgba(34, 60, 80, 0.19);
