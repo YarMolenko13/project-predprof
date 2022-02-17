@@ -42,7 +42,7 @@ function unhighlight(e) {
 function handleDrop(e) {
     var dt = e.dataTransfer;
     var files = dt.files;
-    submitButton.setAttribute("disabled");
+    submitButton.setAttribute("disabled", "disabled");
     submitLabel.classList.add("disabled");
 
     handleFiles(files);

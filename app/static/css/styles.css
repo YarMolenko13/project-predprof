@@ -247,4 +247,5 @@ svg.radial-progress text {
 .disabled {
   color: rgba(99, 99, 99, 0.6);
   background-color: rgba(1, 1, 1, 0.11);
+  cursor: default;
 }
