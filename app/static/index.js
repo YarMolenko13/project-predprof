@@ -4,6 +4,8 @@ const UPLOAD_URL = "/api/upload";
 
 const textPlaceholderImage = "./images/txt.png";
 let dropArea = document.getElementById("drop-area");
+let submitLabel = document.getElementById("submitLabel");
+let submitButton = document.getElementById("submitButton");
 
 // Prevent default drag behaviors
 ["dragenter", "dragover", "dragleave", "drop"].forEach((eventName) => {
@@ -40,6 +42,8 @@ function unhighlight(e) {
 function handleDrop(e) {
     var dt = e.dataTransfer;
     var files = dt.files;
+    submitButton.setAttribute("disabled");
+    submitLabel.classList.add("disabled");
 
     handleFiles(files);
 }
@@ -58,9 +62,7 @@ function initializeProgress(numFiles) {
 
 function updateProgress(fileNumber, percent) {
     uploadProgress[fileNumber] = percent;
-    let total =
-        uploadProgress.reduce((tot, curr) => tot + curr, 0) /
-        uploadProgress.length;
+    let total = uploadProgress.reduce((tot, curr) => tot + curr, 0) / uploadProgress.length;
     progressBar.value = total;
 }
 
@@ -97,6 +99,10 @@ function uploadFile(file, i) {
     })
         .then(() => {
             updateProgress(i, 100); // запоняем прогрессбар для картинки/файла
+            if (progressBar.value == 100) {
+                submitButton.removeAttribute("disabled");
+                submitLabel.classList.remove("disabled");
+            }
         })
         .catch(() => {
             // Ошибка. Информируем пользователя
@@ -105,17 +111,17 @@ function uploadFile(file, i) {
 
 function submitForm(e) {
     e.preventDefault();
-    window.removeEventListener("beforeunload", fetchDeleteFolder)
+    window.removeEventListener("beforeunload", fetchDeleteFolder);
     window.location.href = RESULTS_URL;
 }
 
 document.querySelector("#submitButton").addEventListener("click", submitForm);
 
 function fetchDeleteFolder() {
-    alert("before")
+    alert("before");
     fetch(DELETE_FOLDER_URL, {
         method: "POST",
-    })
+    });
 }
 
 window.addEventListener("beforeunload", fetchDeleteFolder);
