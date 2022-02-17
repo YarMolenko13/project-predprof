@@ -9,7 +9,7 @@ from config import *
 from main_no_yolo import SESSION_USER
 
 
-# from yolo.detect import run
+from yolo.detect import run
 
 
 def upload_callback():
@@ -25,8 +25,9 @@ def home():
         user_id = uuid.uuid1()
         session[SESSION_USER] = str(user_id)
     else:
-        print("deeelete")
-        service.clear_user_input_folder(session[SESSION_USER])
+        print("delete folders home")
+        # TODO: delete user folder
+        service.clear_input_and_output_folders(session[SESSION_USER])
 
     return render_template("index.html")
 
@@ -50,8 +51,11 @@ def upload():
         # TODO: move functional to service
         user_id = session[SESSION_USER]
 
-        service.create_user_folder_and_get_path(user_id)
-        input_path = service.get_user_path(user_id) + INPUT_FOLDER
+        service.create_user_folder(user_id)
+
+        user_path = service.get_user_path(user_id)
+        input_path = user_path + INPUT_FOLDER
+        output_path = user_path + OUTPUT_FOLDER
 
         filename = secure_filename(file.filename)
 
@@ -59,6 +63,11 @@ def upload():
         path = path.replace("\\", "/")
 
         file.save(path)
+        # спорный вопрос: очищение input перед работой yolo, чтобы нейросеть не обрабатовала те же файлы
+        service.clear_input_folder(user_id)
+
+        # yolo
+        run(source=f"{input_path}", project=f"{output_path}")
 
     return "good", 200
 
@@ -68,7 +77,14 @@ def upload():
 """
 def results():
     if SESSION_USER in session:
-        # user_id = session[SESSION_USER]
+        user_id = session[SESSION_USER]
+
+        user_path = service.get_user_path(user_id)
+        input_path = user_path + INPUT_FOLDER
+        output_path = user_path + OUTPUT_FOLDER
+
+        # yolo
+        run(source=f"{input_path}", project=f"{output_path}")
 
         return render_template("results.html")
     return redirect("/")
@@ -77,11 +93,12 @@ def results():
 """
 Очищение папки input пользователя
 """
+# TODO: clear output too
 def delete_folder():
     user_id = session[SESSION_USER]
 
     try:
-        service.clear_user_input_folder(user_id)
+        service.clear_input_and_output_folders(user_id)
     except Exception as e:
         print(e)
         print("delete error")
