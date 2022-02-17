@@ -18,11 +18,7 @@ app.add_url_rule('/api/delete_folder', view_func=views.delete_folder, methods=["
 if __name__ == "__main__":
     app.run(port=3000, debug=False)
 
-# !!!TODO: on leave results delete only input \ reset button
-
-# TODO: merge funcs from main_no_yolo to main
-
-# FIXME: delete error
+# TODO: Frontend: unclickable send files
 
 # TODO: удаление папки при выходе с results
 
