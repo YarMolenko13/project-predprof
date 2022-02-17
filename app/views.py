@@ -5,8 +5,8 @@ from flask import render_template, request, flash, redirect, session
 from werkzeug.utils import secure_filename
 
 import app.service as service
+from app.tools import get_results
 from config import *
-from main_no_yolo import SESSION_USER
 
 
 from yolo.detect import run
@@ -86,6 +86,8 @@ def results():
         # yolo
         # main(source=f"{input_path}", project=f"{output_path}")
         run(source=f"{input_path}", project=f"{output_path}")
+
+        print(get_results(input_path, output_path + '/labels'))
 
         return render_template("results.html")
     return redirect("/")
