@@ -1,50 +1,49 @@
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Jost:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Jost:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet" />
 
-    <link rel="stylesheet" href="../static/css/styles.css" />
-    <title>WheatDetector</title>
-  </head>
-  <body>
-    <div class="content">
-      <div class="header">
-        <h1 class="header__text">
-          WheatDetector
-        </h1>
-      </div>
-      <div class="container">
-        <h1 class="dron__text">Загрузка файлов с дрона</h1>
-        <div id="drop-area">
-          <form class="dron-form">
-            <p class="dron-form__text"> 
-              Загрузите фотографии полей, не изменяя их названий, а также
-              текстовые файлы с данными о полях. После загрузки данные будут
-              обработаны на сервере
-            </p>
-            <div class="buttons">
-              <input
-              type="file"
-              id="fileElem"
-              multiple
-              accept="image/*"
-              onchange="handleFiles(this.files)"
-            />
-            <label class="button" for="fileElem">SELECT FILES</label>
-            <button id="submitButton" disabled></button>
-            <label class="button disabled" for="submitButton" id="submitLabel">SEND FILES</label>
+        <link rel="stylesheet" href="../static/css/styles.css" />
+        <title>WheatDetector</title>
+    </head>
+    <body>
+        <div class="spinner none">
+            <div class="lds-ring">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
             </div>
-          </form>
-          <progress id="progress-bar" max="100" value="0"></progress>
-          <div id="gallery"></div>
         </div>
-      </div>
-    </div>
-    <script src="../static/index.js"></script>
-  </body>
+        <div class="content">
+            <div class="header">
+                <h1 class="header__text">WheatDetector</h1>
+            </div>
+            <div class="container">
+                <h1 class="dron__text">Загрузка файлов с дрона</h1>
+                <div id="drop-area">
+                    <form class="dron-form">
+                        <p class="dron-form__text">
+                            Загрузите фотографии полей, не изменяя их названий, а также текстовые файлы с данными о полях. После загрузки данные будут
+                            обработаны на сервере
+                        </p>
+                        <div class="buttons">
+                            <input type="file" id="fileElem" multiple accept="image/*" onchange="handleFiles(this.files)" />
+                            <label class="button" for="fileElem">SELECT FILES</label>
+                            <button id="submitButton" disabled></button>
+                            <label class="button disabled" for="submitButton" id="submitLabel">SEND FILES</label>
+                        </div>
+                    </form>
+                    <progress id="progress-bar" max="100" value="0"></progress>
+                    <div id="gallery"></div>
+                </div>
+            </div>
+        </div>
+        <script src="../static/index.js"></script>
+    </body>
 </html>

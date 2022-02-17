@@ -6,6 +6,7 @@ const textPlaceholderImage = "./images/txt.png";
 let dropArea = document.getElementById("drop-area");
 let submitLabel = document.getElementById("submitLabel");
 let submitButton = document.getElementById("submitButton");
+let spinner = document.getElementsByClassName("spinner")[0];
 
 // Prevent default drag behaviors
 ["dragenter", "dragover", "dragleave", "drop"].forEach((eventName) => {
@@ -111,6 +112,7 @@ function uploadFile(file, i) {
 
 function submitForm(e) {
     e.preventDefault();
+    spinner.classList.remove("none");
     window.removeEventListener("beforeunload", fetchDeleteFolder);
     window.location.href = RESULTS_URL;
 }

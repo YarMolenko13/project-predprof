@@ -13,14 +13,16 @@ html {
 
 body {
   font-family: "Jost", sans-serif;
-  margin: 2vw;
   margin-bottom: 0;
+  position: relative;
 }
 
 .content {
   background-image: -webkit-gradient(linear, left top, right top, from(#fff), to(#eee));
   background-image: linear-gradient(to right, #fff, #eee);
-  height: 100%;
+  min-height: 100%;
+  height: auto;
+  margin: 2vw;
   -webkit-box-shadow: 8px -9px 22px -1px rgba(34, 60, 80, 0.19);
   box-shadow: 8px -9px 22px -1px rgba(34, 60, 80, 0.19);
 }
@@ -248,4 +250,85 @@ svg.radial-progress text {
   color: rgba(99, 99, 99, 0.6);
   background-color: rgba(1, 1, 1, 0.11);
   cursor: default;
+}
+
+.lds-ring {
+  display: inline-block;
+  position: relative;
+}
+
+.lds-ring div {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border: 8px solid #fff;
+  border-radius: 50%;
+  -webkit-animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+          animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: #fff transparent transparent transparent;
+}
+
+.lds-ring div:nth-child(1) {
+  -webkit-animation-delay: -0.45s;
+          animation-delay: -0.45s;
+}
+
+.lds-ring div:nth-child(2) {
+  -webkit-animation-delay: -0.3s;
+          animation-delay: -0.3s;
+}
+
+.lds-ring div:nth-child(3) {
+  -webkit-animation-delay: -0.15s;
+          animation-delay: -0.15s;
+}
+
+@-webkit-keyframes lds-ring {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@keyframes lds-ring {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+.spinner {
+  z-index: 100;
+  position: fixed;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: #020024;
+  background: -webkit-gradient(linear, left top, right top, from(#020024), color-stop(0%, #00d4ff), to(#4170cd));
+  background: linear-gradient(90deg, #020024 0%, #00d4ff 0%, #4170cd 100%);
+}
+
+.none {
+  display: none;
 }
