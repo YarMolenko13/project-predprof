@@ -64,10 +64,7 @@ def upload():
 
         file.save(path)
         # спорный вопрос: очищение input перед работой yolo, чтобы нейросеть не обрабатовала те же файлы
-        service.clear_input_folder(user_id)
-
-        # yolo
-        run(source=f"{input_path}", project=f"{output_path}")
+        # service.clear_input_folder(user_id)
 
     return "good", 200
 
@@ -83,7 +80,11 @@ def results():
         input_path = user_path + INPUT_FOLDER
         output_path = user_path + OUTPUT_FOLDER
 
+        print(input_path)
+        print(output_path)
+
         # yolo
+        # main(source=f"{input_path}", project=f"{output_path}")
         run(source=f"{input_path}", project=f"{output_path}")
 
         return render_template("results.html")

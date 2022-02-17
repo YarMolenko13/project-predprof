@@ -18,7 +18,7 @@ app.add_url_rule('/api/delete_folder', view_func=views.delete_folder, methods=["
 if __name__ == "__main__":
     app.run(port=3000, debug=False)
 
-# TODO: Frontend: unclickable send files
+# TODO: Frontend: disable spinner on load
 
 # TODO: удаление папки при выходе с results +/-
 
@@ -27,5 +27,3 @@ if __name__ == "__main__":
 # TODO: рефакторинг кода
 
 # TODO: errors catching
-
-# TODO: (координаты * 1024)
