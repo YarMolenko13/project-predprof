@@ -206,3 +206,8 @@ svg.radial-progress text {
   padding: 1em;
   width: 100%;
 }
+
+.disabled {
+  color: rgba(99, 99, 99, 0.6);
+  background-color: rgba(1, 1, 1, 0.11);
+}
