@@ -27,3 +27,5 @@ if __name__ == "__main__":
 # TODO: рефакторинг кода
 
 # TODO: errors catching
+
+# TODO: (координаты * 1024)

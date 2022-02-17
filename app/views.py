@@ -79,10 +79,12 @@ def results():
     if SESSION_USER in session:
         user_id = session[SESSION_USER]
 
-        paths = os.listdir(service.get_user_path(user_id) + OUTPUT_FOLDER)
+        user_path = service.get_user_path(user_id)
+        input_path = user_path + INPUT_FOLDER
+        output_path = user_path + OUTPUT_FOLDER
 
-        for path in paths:
-            print(path)
+        # yolo
+        run(source=f"{input_path}", project=f"{output_path}")
 
         return render_template("results.html")
     return redirect("/")
