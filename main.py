@@ -20,7 +20,7 @@ if __name__ == "__main__":
 
 # TODO: Frontend: unclickable send files
 
-# TODO: удаление папки при выходе с results
+# TODO: удаление папки при выходе с results +/-
 
 # TODO: логирование
 
