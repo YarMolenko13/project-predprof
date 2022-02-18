@@ -7,7 +7,7 @@ from werkzeug.utils import secure_filename
 import app.service as service
 from app.tools import get_results
 from config import *
-
+import json
 
 from yolo.detect import run
 
@@ -87,9 +87,12 @@ def results():
         # main(source=f"{input_path}", project=f"{output_path}")
         run(source=f"{input_path}", project=f"{output_path}")
 
-        print(get_results(input_path + "/", output_path + '/labels/'))
+        results = get_results(input_path + "/", output_path + '/labels/')
+        data_json = json.dumps({
+            "results": results
+        })
 
-        return render_template("results.html")
+        return render_template("results.html", data_json=data_json)
     return redirect("/")
 
 
