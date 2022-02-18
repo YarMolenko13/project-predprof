@@ -2,7 +2,7 @@ const RESULTS_URL = "/results";
 const DELETE_FOLDER_URL = "/api/delete_folder";
 const UPLOAD_URL = "/api/upload";
 
-const textPlaceholderImage = "./images/txt.png";
+const textPlaceholderImage = "/static/images/txt.png";
 let dropArea = document.getElementById("drop-area");
 let submitLabel = document.getElementById("submitLabel");
 let submitButton = document.getElementById("submitButton");
