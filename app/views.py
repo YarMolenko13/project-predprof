@@ -87,7 +87,7 @@ def results():
         # main(source=f"{input_path}", project=f"{output_path}")
         run(source=f"{input_path}", project=f"{output_path}")
 
-        print(get_results(input_path, output_path + '/labels'))
+        print(get_results(input_path + "/", output_path + '/labels/'))
 
         return render_template("results.html")
     return redirect("/")

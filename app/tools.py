@@ -5,6 +5,7 @@ import numpy as np
 
 
 def density(wheats, heights):
+    print(heights)
     p1 = []
     for i in range(len(wheats)):
         length = 2 * (heights[i] - 1.05) * np.tan(np.pi / 3)
@@ -24,35 +25,33 @@ returns (densities, squares, total_wheats)
 
 
 def get_results(dirname_input: str, dirname_output: str):
-    files_dir = listdir(dirname_output)
+    files_dir = listdir(dirname_input)
 
     densities = []
     squares = []
     total_wheats = []
 
 
-    fields_num = int(sorted(files_dir, key=lambda x: int(x.split("_")[1]))[-1].split("_")[-2])
+    only_fields_txt = list(filter(lambda x: "Field" in x, files_dir))
+    fields_num = len(only_fields_txt)
     for field in range(1, fields_num + 1):
         files_dir = listdir(dirname_output)
 
         wheats = []
         heights = []
-        files = sorted(files, key=lambda x: int(x.split("_")[-1].replace(".txt", "")))
+        files = sorted(files_dir, key=lambda x: int(x.split("_")[2].replace(".txt", "")))
 
-        for file_name in list(filter(lambda x: "BndBox" in x, files)):
-            if int(file_name.split("_")[-2]) == field:
-                with open(dirname_output + file_name) as f:
-                    wheats.append(len(f.readline().split("\n")))
-                f.close()
+        for file_name in files:
+            if int(file_name.split("_")[1]) == field:
+                wheats.append(sum(1 for line in open(dirname_output + file_name)))
 
         files_dir = listdir(dirname_input)
         files = list(filter(lambda x: "Foto" in x, files_dir))
-        files = sorted(files, key=lambda x: int(x.split("_")[-4]))
+        files = sorted(files, key=lambda x: int(x.split("_")[2]))
 
-        for file_name in list(filter(lambda x: "Foto" in x and ".png" in x, files)):
-            if ".png" in file_name and int(file_name.split("_")[-5]) == field:
+        for file_name in list(filter(lambda x: ".png" in x, files)):
+            if int(file_name.split("_")[1]) == field:
                 heights.append(int(file_name[-7:-4]))
-
         heights = [i / 100 for i in heights]
 
         densities.append(density(wheats, heights))

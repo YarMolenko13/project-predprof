@@ -127,3 +127,6 @@ function fetchDeleteFolder() {
 }
 
 window.addEventListener("beforeunload", fetchDeleteFolder);
+window.addEventListener("onload", () => {
+    spinner.classList.add("none");
+});
