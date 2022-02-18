@@ -1,15 +1,19 @@
-$("svg.radial-progress").each(function (index, value) {
-    $("svg.radial-progress").each(function (index, value) {
-        $(this).find($("circle.complete")).removeAttr("style");
-    });
+let results = document.getElementById("data_json").value;
+console.log(results)
+console.log(JSON.parse(results))
 
-    percent = $(value).data("percentage");
-    radius = $(this).find($("circle.complete")).attr("r");
-    circumference = 2 * Math.PI * radius;
-    strokeDashOffset = circumference - (percent * circumference) / 100;
-    $(this)
-        .find($("circle.complete"))
-        .animate({ "stroke-dashoffset": strokeDashOffset }, 1250);
+$("svg.radial-progress").each(function (index, value) {
+  $("svg.radial-progress").each(function (index, value) {
+    $(this).find($("circle.complete")).removeAttr("style");
+  });
+
+  percent = $(value).data("percentage");
+  radius = $(this).find($("circle.complete")).attr("r");
+  circumference = 2 * Math.PI * radius;
+  strokeDashOffset = circumference - (percent * circumference) / 100;
+  $(this)
+    .find($("circle.complete"))
+    .animate({ "stroke-dashoffset": strokeDashOffset }, 1250);
 });
 
 
@@ -42,21 +46,21 @@ const data = {
 };
 
 const config = {
-    type: 'bar',
-    data: data,
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true
-        }
+  type: 'bar',
+  data: data,
+  options: {
+    scales: {
+      y: {
+        beginAtZero: true
       }
-    },
+    }
+  },
 };
 
 const densityChart = new Chart(
-    document.getElementById('densityChart'),
-    config
-  );
+  document.getElementById('densityChart'),
+  config
+);
 
 const squareData = {
   labels: labels,
@@ -86,19 +90,19 @@ const squareData = {
 };
 
 const squareConfig = {
-    type: 'bar',
-    data: squareData,
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true
-        }
+  type: 'bar',
+  data: squareData,
+  options: {
+    scales: {
+      y: {
+        beginAtZero: true
       }
-    },
+    }
+  },
 };
 
-  const squareChart = new Chart(
-    document.getElementById('squareChart'),
-    squareConfig
-  );
+const squareChart = new Chart(
+  document.getElementById('squareChart'),
+  squareConfig
+);
 

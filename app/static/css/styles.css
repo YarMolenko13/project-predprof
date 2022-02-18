@@ -332,3 +332,7 @@ svg.radial-progress text {
 .none {
   display: none;
 }
+
+#data_json {
+  display: none;
+}
