@@ -7,7 +7,7 @@ git clone git@github.com:YarMolenko13/predprof-project.git
 cd predprof-project
 python -m venv venv
 .\venv\Scripts\activate
-pip install -r  requirements.txt # установка всех зависимостей (не рекомендуется)
+pip install -r  requirements.txt # установка всех зависимостей 
 ```
 
 ### Запуск
