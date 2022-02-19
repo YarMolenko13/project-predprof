@@ -23,10 +23,10 @@
                     <div class="card card--main">
                         <h1 class="card__title card__title--main">Average Density</h1>
                         <div class="card__content">
-                            <svg class="radial-progress" data-percentage="5" viewBox="0 0 80 80">
+                            <svg id="avg-dens-data"class="radial-progress" data-percentage="5" viewBox="0 0 80 80">
                                 <circle class="incomplete" cx="40" cy="40" r="35"></circle>
                                 <circle class="complete" cx="40" cy="40" r="35" style="stroke-dashoffset: 39.58406743523136"></circle>
-                                <text class="percentage" x="50%" y="57%" transform="matrix(0, 1, -1, 0, 80, 0)">5%</text>
+                                <text id="avg-dens-text"class="percentage" x="50%" y="57%" transform="matrix(0, 1, -1, 0, 80, 0)">5</text>
                             </svg>
                         </div>
                     </div>
@@ -40,7 +40,7 @@
                       <h1 class="card__title card__title--main">Average Square</h1>
                       <div class="card__content">
                           <img class="square-img" src="../static/images/field.svg"/>
-                          <h5 class="average-square">1321092 m^2</h5>
+                          <h5 class="average-square" id="avg-square">0 m^2</h5>
                       </div>
                   </div>
                     <div class="card card--graph">
