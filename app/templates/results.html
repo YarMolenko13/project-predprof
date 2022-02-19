@@ -7,7 +7,10 @@
 
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link href="https://fonts.googleapis.com/css2?family=Jost:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Jost:wght@100;200;300;400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
 
         <link rel="stylesheet" href="../static/css/styles.css" />
         <title>WheatDetector</title>
@@ -23,10 +26,24 @@
                     <div class="card card--main">
                         <h1 class="card__title card__title--main">Average Density</h1>
                         <div class="card__content">
-                            <svg id="avg-dens-data"class="radial-progress" data-percentage="5" viewBox="0 0 80 80">
+                            <svg id="avg-dens-data" class="radial-progress" data-percentage="5" viewBox="0 0 80 80">
                                 <circle class="incomplete" cx="40" cy="40" r="35"></circle>
-                                <circle class="complete" cx="40" cy="40" r="35" style="stroke-dashoffset: 39.58406743523136"></circle>
-                                <text id="avg-dens-text"class="percentage" x="50%" y="57%" transform="matrix(0, 1, -1, 0, 80, 0)">5</text>
+                                <circle
+                                    class="complete"
+                                    cx="40"
+                                    cy="40"
+                                    r="35"
+                                    style="stroke-dashoffset: 39.58406743523136"
+                                ></circle>
+                                <text
+                                    id="avg-dens-text"
+                                    class="percentage"
+                                    x="50%"
+                                    y="57%"
+                                    transform="matrix(0, 1, -1, 0, 80, 0)"
+                                >
+                                    5
+                                </text>
                             </svg>
                         </div>
                     </div>
@@ -37,21 +54,34 @@
                         </div>
                     </div>
                     <div class="card card--main">
-                      <h1 class="card__title card__title--main">Average Square</h1>
-                      <div class="card__content">
-                          <img class="square-img" src="../static/images/field.svg"/>
-                          <h5 class="average-square" id="avg-square">0 m^2</h5>
-                      </div>
-                  </div>
+                        <h1 class="card__title card__title--main">Average Square</h1>
+                        <div class="card__content">
+                            <img class="square-img" src="../static/images/field.svg" />
+                            <h5 class="average-square" id="avg-square">0 m^2</h5>
+                        </div>
+                    </div>
                     <div class="card card--graph">
-                      <h1 class="card__title card__title--graph">Squares</h1>
-                      <div class="card__content">
-                          <canvas id="squareChart"></canvas>
-                      </div>
-                  </div>
+                        <h1 class="card__title card__title--graph">Squares</h1>
+                        <div class="card__content">
+                            <canvas id="squareChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="card card--main">
+                        <h1 class="card__title card__title--main">Average Wheat</h1>
+                        <div class="card__content">
+                            <img class="square-img" src="../static/images/wheat_logo.png" />
+                            <h5 class="average-wheat" id="avg-wheat"></h5>
+                        </div>
+                    </div>
+                    <div class="card card--graph">
+                        <h1 class="card__title card__title--graph">Wheat</h1>
+                        <div class="card__content">
+                            <canvas id="wheatChart"></canvas>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <input id="data_json" type="text" value="{{ data_json }}">
+            <input id="data_json" type="text" value="{{ data_json }}" />
         </div>
         <script
             src="https://code.jquery.com/jquery-3.3.1.min.js"

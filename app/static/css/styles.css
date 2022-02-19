@@ -148,7 +148,8 @@ p {
   margin-bottom: 2rem;
 }
 
-.average-square {
+.average-square,
+.average-wheat {
   font-size: 2rem;
   margin-bottom: 1rem;
 }

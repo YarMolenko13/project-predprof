@@ -1,10 +1,10 @@
 let results = document.getElementById("data_json").value;
 let totalDensity = 0;
 let totalSquare = 0;
-// let totalWheat = 0;
+let totalWheat = 0;
 let densityList = [];
 let squareList = [];
-// let wheatList = 0;
+let wheatList = [];
 
 resultsList = JSON.parse(results)["results"];
 console.log(resultsList)
@@ -14,16 +14,17 @@ for (let i = 0; i < resultsLength; i++) {
     console.log(resultsList[0][i], resultsList[1][i])
     densityList.push(resultsList[0][i]);
     squareList.push(resultsList[1][i]);
-    // wheatList.push(resultsList[i][2])
+    wheatList.push(resultsList[2][i])
 
     totalDensity += resultsList[0][i];
     totalSquare += resultsList[1][i];
-    // totalWheat += resultsList[i][2];
+    totalWheat += resultsList[2][i];
 }
 
 let averageDensity = Math.round(totalDensity / resultsLength, 2);
 let averageSquare = Math.round(totalSquare / resultsLength);
-console.log(averageDensity, averageSquare)
+let averageWheat = Math.round(totalWheat / resultsLength);
+console.log(averageDensity, averageSquare, averageWheat)
 
 let averageSquareElem = document.getElementById("avg-square");
 averageSquareElem.innerHTML = averageSquare.toString() + " m^2";
@@ -31,6 +32,8 @@ let averageDensityData = document.getElementById("avg-dens-data");
 averageDensityData.setAttribute("data-percentage", averageDensity)
 let averageDensityText = document.getElementById("avg-dens-text");
 averageDensityText.innerHTML = averageDensity.toString();
+let averageWheatText = document.getElementById("avg-wheat");
+averageWheatText.innerHTML = averageWheat.toString();
 
 let generatedColors = Array(resultsLength)
     .fill()
@@ -100,6 +103,32 @@ const squareConfig = {
 };
 
 const squareChart = new Chart(document.getElementById("squareChart"), squareConfig);
+
+const wheatData = {
+    labels: labels,
+    datasets: [
+        {
+            label: "Number of Wheat on every Field",
+            data: wheatList,
+            backgroundColor: generatedColors,
+            borderWidth: 1,
+        },
+    ],
+};
+
+const wheatConfig = {
+    type: "bar",
+    data: wheatData,
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true,
+            },
+        },
+    },
+};
+
+const wheatChart = new Chart(document.getElementById("wheatChart"), wheatConfig);
 
 function range(start, end) {
     if (start === end) return [start];
