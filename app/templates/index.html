@@ -6,7 +6,10 @@
 
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link href="https://fonts.googleapis.com/css2?family=Jost:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Jost:wght@100;200;300;400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
 
         <link rel="stylesheet" href="../static/css/styles.css" />
         <title>WheatDetector</title>
@@ -25,15 +28,21 @@
                 <h1 class="header__text">WheatDetector</h1>
             </div>
             <div class="container">
-                <h1 class="dron__text">Загрузка файлов с дрона</h1>
+                <h1 class="dron__text">Loading files from a drone</h1>
                 <div id="drop-area">
                     <form class="dron-form">
                         <p class="dron-form__text">
-                            Загрузите фотографии полей, не изменяя их названий, а также текстовые файлы с данными о полях. После загрузки данные будут
-                            обработаны на сервере
+                            Upload photos of the fields without changing their names, as well as text files with field
+                            data. After uploading, the data will be processed on the server
                         </p>
                         <div class="buttons">
-                            <input type="file" id="fileElem" multiple accept="image/*" onchange="handleFiles(this.files)" />
+                            <input
+                                type="file"
+                                id="fileElem"
+                                multiple
+                                accept="image/*"
+                                onchange="handleFiles(this.files)"
+                            />
                             <label class="button" for="fileElem">SELECT FILES</label>
                             <button id="submitButton" disabled></button>
                             <label class="button disabled" for="submitButton" id="submitLabel">SEND FILES</label>
